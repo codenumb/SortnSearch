@@ -1,7 +1,7 @@
-
 #include<stdio.h>
 #include<stdlib.h>
 #include "sortser.h"
+/*sorting*/
 void mergesort(int *A,int n)
 {
  int mid,i,*left,*right;
@@ -40,4 +40,22 @@ void merge(int *A,int *L,int lengthOfL,int*R,int lengthOfR)
 		A[k++]=L[i++];
 	while(j<lengthOfR)
 		A[k++]=R[j++];
+}
+/*sorting_end*/
+
+/*Searching*/
+int*find(int*A,int n,int id)// array,length,and id is passing
+{
+	int mid;
+	mid=(n)/2;	//middle index
+		if(id<A[0]||id>A[n-1])
+		return NULL;//if id are greater or less than min or max value in the array{exit condition}
+		if(A[mid]==id)
+		return &A[mid];//id found returns address{exit condition}
+		else if(A[mid]>id)//if id less than middle value of the array
+		find(A,mid,id);//reccursing:passing first half of the array
+		else if(A[mid]<id)// if id grater than middle value of array
+		find(&A[mid+1],n-(mid+1),id);//reccursing:passing second half of the array			
+		else if(mid>n||mid<1)//if element not found 
+		return NULL; //exit 	
 }
